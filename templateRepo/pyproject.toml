@@ -1,0 +1,104 @@
+[tool.ruff]
+
+# Include directories and files
+include = ["pyproject.toml", "*.py", ".ipynb"]
+
+# Exclude commonly ignored directories
+exclude = [
+    ".git",
+    ".ipynb_checpoints",
+    ".mypy_cache",
+    ".pyenv",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".pytype",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "**/test/"
+]
+
+# Assume latest version Python 3.11
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D104",
+    "D212", 
+    "D203", 
+    "D211", 
+    "COM812", 
+    "ISC001", 
+    "ERA001", 
+    "Q000", 
+    "Q001",
+    "Q002", 
+    "ANN101",
+    "EXE002",
+    "TD002", 
+    "TD003",
+    "TID252", # Relative Imports 
+    "FIX002",
+    "PTH120",
+    "PTH118",
+    "S506",
+    "S101", # assert statements: needed for pytest assertions
+]
+
+# Allow fix for all enabled rules (when '--fix') is provided).
+fixable = ["ALL"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings.
+docstring-code-format = false # Managed by autodocstrings extension in vscode
+
+# Set the line length limit when formatting code snippets in docstrings
+# This only has effect when the 'docstring-code-format' setting is enabled
+docstring-code-line-length = "dynamic"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+no_implicit_reexport = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unused_configs = true
+strict_equality = true
+explicit_package_bases = true
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
+]
+addopts = "--cov=src --cov-report=term-missing --cov-fail-under=80"
+testpaths = ["tests"]
