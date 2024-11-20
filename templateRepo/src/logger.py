@@ -118,9 +118,9 @@ class Logger:
         logger.addHandler(file_handler)
 
         # # Warning filter when external stdout or stderr is being redirected
-        warning_filter = WarningFilter()
-        warning_filter.logger = logger
-        logger.addFilter(warning_filter)
+        # warning_filter = WarningFilter()
+        # warning_filter.logger = logger
+        # logger.addFilter(warning_filter)
 
         self.logger = logger
 

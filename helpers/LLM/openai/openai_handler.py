@@ -21,6 +21,8 @@ if TYPE_CHECKING:
 
     from openai.types.chat import ChatCompletion, ChatCompletionChunk
 
+from helpers.logger.logger import Logger
+
 logger = Logger(initial_level="INFO") # Need to import logger lines for custom logger class
 
 
