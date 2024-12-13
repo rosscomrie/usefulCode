@@ -1,0 +1,5 @@
+Configuration,Number of Chunks,Average Chunk Length,Average Retrieval Time (s),Total Retrieved Documents
+Small Fixed Chunks,7,160.71,0.416,10
+Medium Fixed Chunks,4,282.75,0.311,10
+Recursive Paragraph,5,226.4,0.299,10
+Token Based,2,626.5,0.36,10

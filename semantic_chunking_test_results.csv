@@ -1,0 +1,6 @@
+Configuration,Number of Chunks,Avg Chunk Length,Chunk Length Std,Avg Similarity,Max Similarity,Top-K Accuracy,MRR,Precision@K
+Overlapping Sentences,3,511.67,15.28,0.856,0.871,1.0,0.5,1.0
+Overlapping Paragraphs,3,647.0,33.74,0.854,0.866,1.0,0.5,1.0
+Document Structure,1,1142.0,0.0,0.847,0.847,1.0,1.0,1.0
+Subject Similarity,1,1140.0,0.0,0.848,0.848,1.0,1.0,1.0
+Copy Introductory,3,782.33,64.5,0.853,0.861,1.0,0.533,1.0
