@@ -11,7 +11,7 @@ class ChunkingVisualizer:
     
     def setup_style(self):
         """Set up the plotting style."""
-        plt.style.use('seaborn')
+        plt.style.use('default')  # Use matplotlib's default style
         sns.set_palette("husl")
         plt.rcParams['figure.figsize'] = [12, 8]
         plt.rcParams['figure.dpi'] = 100
@@ -82,13 +82,16 @@ class ChunkingVisualizer:
         
         fig, ax = plt.subplots(figsize=(10, 10), subplot_kw=dict(projection='polar'))
         
+        # Use different colors for each method
+        colors = plt.cm.husl(np.linspace(0, 1, len(methods)))
+        
         for idx, method in enumerate(methods):
             method_data = data[data['Configuration'] == method]
             values = [method_data[metric].iloc[0] for metric in metrics]
             values = np.concatenate((values, [values[0]]))  # Complete the circle
             
-            ax.plot(angles, values, 'o-', linewidth=2, label=method)
-            ax.fill(angles, values, alpha=0.25)
+            ax.plot(angles, values, 'o-', linewidth=2, label=method, color=colors[idx])
+            ax.fill(angles, values, alpha=0.25, color=colors[idx])
         
         ax.set_xticks(angles[:-1])
         ax.set_xticklabels(metrics)
@@ -107,15 +110,16 @@ class ChunkingVisualizer:
         
         # Plot chunk size distribution
         ax1 = fig.add_subplot(gs[0, 0])
-        self.results_df.plot(
-            kind='scatter',
-            x='Number of Chunks',
-            y='Avg Chunk Length',
-            c='Type',
-            cmap='Set2',
-            ax=ax1
-        )
+        colors = plt.cm.husl(np.linspace(0, 1, len(self.results_df['Type'].unique())))
+        for idx, (type_name, group) in enumerate(self.results_df.groupby('Type')):
+            ax1.scatter(
+                group['Number of Chunks'],
+                group['Avg Chunk Length'],
+                label=type_name,
+                color=colors[idx]
+            )
         ax1.set_title('Chunk Size Distribution')
+        ax1.legend()
         
         # Plot average similarity comparison
         ax2 = fig.add_subplot(gs[0, 1])
