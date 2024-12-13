@@ -1,0 +1,11 @@
+openai
+langchain
+faiss-cpu
+pandas
+numpy
+scikit-learn
+nltk
+matplotlib
+seaborn
+python-dotenv
+tqdm
